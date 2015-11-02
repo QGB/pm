@@ -4,6 +4,9 @@
 
 import sys,time,os
 
+from qgb import U
+
+U.msgbox()
 print 2333
 sys.stdout.flush()
 
