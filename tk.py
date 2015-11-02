@@ -6,6 +6,10 @@ import sys,time,os
 
 from qgb import U
 
+
+
+U.p(1,2,3)
+U.x()
 U.msgbox()
 print 2333
 sys.stdout.flush()
