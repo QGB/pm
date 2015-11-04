@@ -1,13 +1,9 @@
-
-
-
-
 import sys,time,os
 
 from qgb import U
 
-
-
+d={'i':1,'j':2}
+print d['i']
 U.p(1,2,3)
 U.x()
 U.msgbox()

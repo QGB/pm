@@ -11,7 +11,9 @@ class gui:
 		
 	def onclick(s,event):
 		b=event.widget
-		print b['textvariable'][i]
+		btv=b['textvariable']
+		
+		U.p(btv)
 		# j=b['textvariable']['j']
 		#U.p(66)
 		U.msgbox()
@@ -27,6 +29,7 @@ class gui:
 				b=s.yb[i][j]
 				b.place(relx=j*w,rely=i*w,relwidth=w,relheight=w)
 				b['textvariable']={'i':i,'j':j}
+				print b['textvariable']
 				b.bind('<Button>',s.onclick)
 		#print s.yb
 	def __init__(s,im=8):
