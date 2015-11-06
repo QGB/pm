@@ -20,11 +20,12 @@ b.place(relx=0, rely=0.5, relwidth=1, relheight=0.1)
 def foo(event):
 	btn=event.widget
 	btn['text']='clicked!'
+	btn['bg']='#008000'
 	U.pln( top.geometry())
 
 b.bind('<Button>',foo)
 
 U.pln(top.keys())
-top['width']=222
+
 
 top.mainloop()
