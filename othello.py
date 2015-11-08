@@ -40,12 +40,17 @@ class gui:
 		
 		
 		# print ia,w,w*64
-	def update(s,ad):
-		if(s.im!=ad.im):
-			s.setBtn(ad.im)
+	def update(s,ad=None):
+		if(ad==None and s.da==None):
+			raise Exception('da==none')
+		if(ad!=None):
+			s.da=ad
+		if(s.im!=s.da.im):
+			s.setBtn(s.da.im)
+		
 		for i in range(s.im):
 			for j in range(s.im):
-				if(ad.y[i][j]==0):
+				if(s.da.y[i][j]==0):
 					s.yb[i][j]['bg']='white'
 				if(ad.y[i][j]==1):
 					s.yb[i][j]['bg']='black'
@@ -57,13 +62,34 @@ class gui:
 	class Fcontrol:
 		def __init__(s,ss):
 			s.f=Toplevel()
-			s.bstart=Button(s.f,text='Start')
+			w=0.3
+			ir=0
+			ic=0
 			s.txtim=Text(s.f)
-			s.bstart.place(rely=0,relx=0)
+			s.txtim.place(rely=ir,relx=ic,relwidth=w,relheight=w-0.03)
+			
+			ir+=w
+			s.bstart=Button(s.f,text='Start')
+			s.bstart.place(rely=ir,relx=ic,relwidth=w,relheight=w)
+			s.bstart.bind('<Button>',s.start)
+			
+			ic+=w
+			s.bexit=Button(s.f,text='exit')
+			s.bexit.place(rely=ir,relx=ic,relwidth=w,relheight=w)
+			s.bexit.bind('<Button>',s.exit)
 			
 			
+		def start(s,event):
+			#print dir(s.txtim)
+			print U.fields(s.txtim)
+			U.pln( )
+			
+		
+		def exit(s,event):
+			U.x()
+		
 		def setfx(s,fx):
-			s.f.geometry('66x66+'+str(fx)+'+-8')
+			s.f.geometry('66x66+'+str(fx)+'+248')
 	def __init__(s,im=8):
 		s.f=Tk()
 		s.__im(im)
@@ -121,8 +147,7 @@ class da:
 				c=s.y[i][j]
 				if(c==ac):
 					for k in getround(i,j):
-						pass
-						
+						pass					
 	def valid(s,colour,x,y):			
 		#If there's already a piece there, it's an invalid move colour
 		if s.y[x][y] in [1,0] :
