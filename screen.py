@@ -7,30 +7,23 @@ import os,sys,socket
 620,0
 1113,259
 '''
-def muti():    
-	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)    
-	sock.connect(('localhost', 2233))
-	import time    
-	flag = 0
-	while True:   
-		time.sleep(3)    
-		sock.send('send to server with value: '+ '%d'%flag )    
-		print sock.recv(4096)   
-		flag+=1#change to another type of value each time  
-	sock.close()    
-
-
-muti()
-U.x()
-
+io=0
 def singleback(msg):
-	U.msgbox(msg)
+	global io
+	U.pln(io)
+	io+=1
+	#U.pln(top)
+	if(io<5 or io>2):raise Exception()
+	if(msg==U.SG_ASK):
+		U.msgbox(msg)
 	
-U.single(port=2233,callback=singleback)
+if(U.isingle(2233)):
+	U.single(port=2233,callback=singleback)
+else:U.x()
+
+
+		#U.x()
 	
-U.x()
-try:os.open('your_lockfile',os.O_CREAT|os.O_EXCL|os.O_RDWR)
-except Exception as e:U.msgbox(e.errno)
 
 help(ImageGrab.grab)
 
@@ -66,4 +59,5 @@ def foo(event):
 
 	
 top.bind('<Button>',foo)
+top
 top.mainloop()

@@ -5,7 +5,9 @@ from qgb import U
 # d={'i':1,'j':2}
 # print d['i']
 # U.p(1,2,3)
-# U.x()
+print U.isingle(2233)
+
+U.x()
 # U.msgbox()
 # print 2333
 # sys.stdout.flush()
