@@ -10,16 +10,15 @@ import os,sys,socket
 io=0
 def singleback(msg):
 	global io
-	U.pln(io)
+	print io
 	io+=1
 	#U.pln(top)
-	if(io<5 or io>2):raise Exception()
 	if(msg==U.SG_ASK):
 		U.msgbox(msg)
-	
+	U.pln(io)
 if(U.isingle(2233)):
 	U.single(port=2233,callback=singleback)
-else:U.x()
+else:U.x(msg='twice')
 
 
 		#U.x()
