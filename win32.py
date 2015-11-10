@@ -25,7 +25,6 @@ def is_win_ok(hwnd, starttext):
 appwindows = get_app_list()
 for i in appwindows:
 	print i
-	
 	# print type(i),type(i[0]),type(i[1])
 	win32gui.EnumChildWindows(0, is_win_ok, 'GoAgent ')
 	# win32gui.ShowWindow(, 0)
