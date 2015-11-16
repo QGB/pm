@@ -1,1 +1,1 @@
-cyg&python screen.py
+cyg&pythonw screen.py

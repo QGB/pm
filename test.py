@@ -1,2 +1,22 @@
-try:os.open('your_lockfile',os.O_CREAT|os.O_EXCL|os.O_RDWR)
-except Exception as e:U.msgbox(e.errno)
+import threading,time
+from qgb import U,T 
+from sys import *
+
+
+def f():
+	x, y =U.getCursorPos()
+	print x,y
+	# U.p(x,y)
+	U.pln(x,y)
+
+def timer(t):
+	while(True):
+		# f()
+		# U.p(U.getCursorPos())
+		stdout.write("q")
+		stdout.flush()
+		time.sleep(t)
+		
+
+# timer(0.11)
+print help(U.single)
