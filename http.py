@@ -1,13 +1,11 @@
-# from requests import get
+# coding=utf-8
+from bs4 import BeautifulSoup as bs
+from qgb import U,T
+import urllib2
 
-# r=get('http://www.bilibili.com/video/av3197589/index_1.html')
+url=('http://www.zhihu.com/people/evenstar/answers?order_by=vote_num&page=15')
 
-# print '''print '{0}',r.{0}    '''%i
-q,w='6',1
+sp=bs(urllib2.urlopen(url),"html.parser" ,from_encoding = 'utf-8') 
 
-print vars()['q']
-print '%(q)'%{'q':''}
-
-# for i in r.__attrs__:
-	# exec()
-	
+help(bs)
+#
