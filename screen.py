@@ -101,9 +101,9 @@ def foo(event):
 	xmin,ymin=min(x,xmin),min(y,ymin)
 	lb['text']=str((xmin,ymin))+'\n'+str((xmax,ymax))
 	
-	U.pln( activeCount())
+	U.pln(activeCount())
 	# U.x()
-
+	
 	Tk().mainloop()
 	
 	
