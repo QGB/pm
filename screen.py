@@ -20,7 +20,7 @@ def loop():
 			time.sleep(0.1)
 			# U.pln(x,y)
 		x0=x;y0=y
-		if(y>299 or x<620):
+		if(y>299+30 or x<620-30):
 			# img= ImageGrab.grab((0+6,800-iw*2+6,iw*2,800))
 			# img=ImageTk.PhotoImage(image=img)
 			tbg['image'] =''
