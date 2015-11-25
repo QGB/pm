@@ -12,7 +12,7 @@ for i in sp.find_all('li'):
 	im+=1;si='_'+str(im);si=''
 	aurl,burl=None,None
 	for j in i.find_all(attrs={"class":"comment-hd"}):
-		urls = re.findall(T.REURL, str(j),re.I)
+		urls = re.findall(T.REURL, str(j),re.I)11
 		if(0<len(urls)<3):
 			aurl=urls[0]
 			try:
