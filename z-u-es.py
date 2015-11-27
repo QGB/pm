@@ -1,5 +1,5 @@
 #coding=utf-8
-gsuser='excited-vczh'
+gsuser='zhang-jia-wei'
 gszhihu='http://www.zhihu.com/'
 gszp=gszhihu+'people/'
 from bs4 import BeautifulSoup as bs
@@ -18,18 +18,21 @@ os.chdir('zhihu')
 U.mkdir(gsuser)
 os.chdir(gsuser)
 
-i=0
+i=50
 while(True):
 	break
 	i+=1
 	fn='%s.html'%i
 	url=gszp+gsuser+('/answers?page=%s'%i)
 	
-	fh=open('%s.html'%i,'wb')
-	fh.write(urllib2.urlopen(url).read())
-	fh.close
+	# U.pln(url) 
+	# fh=open('%s.html'%i,'wb')
+	# fh.write(urllib2.urlopen(url).read())
+	# fh.close
+	os.system("curlzu %s %s"%(str(i),gsuser))
+	if(os.path.getsize(fn)<5):i-=1;continue
 	
-	sh=open('%s.html'%i).read()
+	sh=open(fn).read()
 	if(sh.find("answer-date-link-wrap")==-1):break
 	
 	U.pln(url) 
@@ -92,7 +95,11 @@ while(True):
 		
 		print '-'*60
 		print vote,cmt,spt,set,ti,tiu,sci[:6]
-		wrow([vote,cmt,spt,set,ti,len(ti),tiu,len(sci),sci[:32760]])
+		def wxls(ai):
+			try:wrow([vote,cmt,spt,set,ti,len(ti),tiu,len(sci),sci[:ai]])
+			except:wxls(ai-1)
+			return
+		wxls(32760)
 	# exit()
 
 # print(sp.text.encode('utf-8').decode('gbk'))
@@ -100,3 +107,4 @@ while(True):
 # print ws.rows
 os.chdir('..')
 wbook.save(gsuser+'.xls')
+print gsuser,'Done!!!'
