@@ -1,5 +1,5 @@
 #coding=utf-8
-gsuser='zhang-jia-wei'
+gsuser='bhuztez'
 gszhihu='http://www.zhihu.com/'
 gszp=gszhihu+'people/'
 from bs4 import BeautifulSoup as bs
@@ -18,9 +18,9 @@ os.chdir('zhihu')
 U.mkdir(gsuser)
 os.chdir(gsuser)
 
-i=50
+i=0
 while(True):
-	break
+	# break
 	i+=1
 	fn='%s.html'%i
 	url=gszp+gsuser+('/answers?page=%s'%i)

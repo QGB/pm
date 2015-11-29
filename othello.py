@@ -217,7 +217,7 @@ class da:
 			
 			
 			
-d=da(22)
+d=da(6)
 d.aw()
 d.turn(1,3)
 
