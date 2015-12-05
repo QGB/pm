@@ -1,7 +1,9 @@
 #coding=utf-8
-gsuser='bhuztez'
+gsuser='zhu-xuan'
 gszhihu='http://www.zhihu.com/'
 gszp=gszhihu+'people/'
+gscmt0='''http://www.zhihu.com/node/AnswerCommentBoxV2?params=%7B%22answer_id%22%3A%22'''
+gscmt1='%22%2C%22load_all%22%3Atrue%7D'
 from bs4 import BeautifulSoup as bs
 import os,sys,re,urllib2,chardet
 from qgb import U,T
@@ -23,13 +25,17 @@ while(True):
 	# break
 	i+=1
 	fn='%s.html'%i
-	url=gszp+gsuser+('/answers?page=%s'%i)
+	url=gszp+gsuser+('/answers?page='+str(i))
 	
 	# U.pln(url) 
 	# fh=open('%s.html'%i,'wb')
 	# fh.write(urllib2.urlopen(url).read())
 	# fh.close
-	os.system("curlzu %s %s"%(str(i),gsuser))
+	cmd="zhihucurl %s %s"%(url,i)
+	cmd=T.batencode(cmd)
+	print cmd
+	exit()
+	os.system(cmd)
 	if(os.path.getsize(fn)<5):i-=1;continue
 	
 	sh=open(fn).read()
@@ -37,7 +43,7 @@ while(True):
 	
 	U.pln(url) 
 	# if(U.calltimes()>16):exit()
-# exit()
+exit()
 import xlwt
 wbook=xlwt.Workbook(encoding='GB18030')
 ws =wbook.add_sheet('xlwt1')
@@ -71,7 +77,7 @@ while(True):
 			spt=T.sub(sci,'answer-date-link meta-item','''/a>''')
 			spt=T.sub(spt,'>','''<''')
 			sci='!!!qgb!!!回答建议修改'
-			wrow(['vote','cmt',spt,'set','ti','len(ti)','tiu',len(sci),sci])
+			wrow(['vote','cmt',spt,'set','ti','len(ti)','tiu','aid',len(sci),sci])
 			continue
 		else:
 			ci= ci.prettify().encode('GB18030','ignore')
@@ -93,10 +99,14 @@ while(True):
 		cmt=qi.find('a',attrs={'class':' meta-item toggle-comment'}).text.encode('GB18030','ignore')
 		cmt=T.sub(cmt,'',' ').strip()
 		
+		aid=qi.find('div',attrs={'class':'zm-item-answer'})
+		if(aid==None):aid=''
+		else:aid=aid.get('data-aid');aid=gscmt0+aid+gscmt1
+		
 		print '-'*60
 		print vote,cmt,spt,set,ti,tiu,sci[:6]
 		def wxls(ai):
-			try:wrow([vote,cmt,spt,set,ti,len(ti),tiu,len(sci),sci[:ai]])
+			try:wrow([vote,cmt,spt,set,ti,len(ti),tiu,aid,len(sci),sci[:ai]])
 			except:wxls(ai-1)
 			return
 		wxls(32760)
