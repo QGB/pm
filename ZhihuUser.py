@@ -1,8 +1,8 @@
 #coding=utf-8
-gsuser='zhu-xuan'
-gszhihu='http://www.zhihu.com/'
+gsuser='ze.ran'
+gszhihu='https://www.zhihu.com/'
 gszp=gszhihu+'people/'
-gscmt0='''http://www.zhihu.com/node/AnswerCommentBoxV2?params=%7B%22answer_id%22%3A%22'''
+gscmt0='''https://www.zhihu.com/node/AnswerCommentBoxV2?params=%7B%22answer_id%22%3A%22'''
 gscmt1='%22%2C%22load_all%22%3Atrue%7D'
 from bs4 import BeautifulSoup as bs
 import os,sys,re,urllib2,chardet
@@ -31,11 +31,11 @@ while(True):
 	# fh=open('%s.html'%i,'wb')
 	# fh.write(urllib2.urlopen(url).read())
 	# fh.close
-	cmd="zhihucurl %s %s"%(url,i)
-	cmd=T.batencode(cmd)
-	print cmd
-	exit()
+	cmd='''zhihucurl "%s" %s'''%(url,i)
+	# cmd=T.batencode(cmd)
+	# print cmd
 	os.system(cmd)
+	# exit()
 	if(os.path.getsize(fn)<5):i-=1;continue
 	
 	sh=open(fn).read()
@@ -43,7 +43,7 @@ while(True):
 	
 	U.pln(url) 
 	# if(U.calltimes()>16):exit()
-exit()
+# exit()
 import xlwt
 wbook=xlwt.Workbook(encoding='GB18030')
 ws =wbook.add_sheet('xlwt1')
