@@ -15,3 +15,5 @@ cd E:\SourceCode\shell
 git add -A
 git commit -m %1%
 git push ws master
+
+D:
