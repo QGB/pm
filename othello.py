@@ -16,8 +16,11 @@ class gui:
 		i=int(btv[0])
 		j=int(btv[1])
 		
-		if(b['bg']=='green'):
-			U.pln(i,j)
+		# if(b['bg']=='green'):
+			# U.pln(i,j)
+		s.da.set(i,j,1)
+		s.da.aw()
+		s.update()
 	#U.msgbox(i,c,btv)
 		
 	def setBtn(s,im=8):
@@ -52,11 +55,11 @@ class gui:
 			for j in range(s.im):
 				if(s.da.y[i][j]==0):
 					s.yb[i][j]['bg']='white'
-				if(ad.y[i][j]==1):
+				if(s.da.y[i][j]==1):
 					s.yb[i][j]['bg']='black'
-				if(ad.y[i][j]==2):
+				if(s.da.y[i][j]==2):
 					s.yb[i][j]['bg']='green'
-				if(ad.y[i][j]==3):
+				if(s.da.y[i][j]==3):
 					s.yb[i][j]['bg']='blue'
 					
 	class Fcontrol:
@@ -121,6 +124,8 @@ class da:
 	def init(s):
 		pass
 	#im
+	def set(s,i,j,a):
+		s.y[i][j]=a
 	def getround(s,i,j):
 		r=[]
 		ri=9
@@ -199,7 +204,7 @@ class da:
 			for j in range(len(s.y[i])):
 				if(s.valid(c,i,j)):
 					s.y[i][j]=c+2
-					U.pln(i,j)
+					# U.pln(i,j)
 	def aw(s):s.avail(0)
 	def ab(s):s.avail(1)
 	
@@ -217,11 +222,11 @@ class da:
 			
 			
 			
-d=da(6)
+d=da(12)
 d.aw()
-d.turn(1,3)
+# d.turn(1,3)
 
-d.p()
+# d.p()
 
 
 g=gui()
