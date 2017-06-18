@@ -1,5 +1,5 @@
 #coding=utf-8
-gsuser='ze.ran'
+gsuser='zengjiaplus'
 gszhihu='https://www.zhihu.com/'
 gszp=gszhihu+'people/'
 gscmt0='''https://www.zhihu.com/node/AnswerCommentBoxV2?params=%7B%22answer_id%22%3A%22'''
@@ -31,7 +31,7 @@ while(True):
 	# fh=open('%s.html'%i,'wb')
 	# fh.write(urllib2.urlopen(url).read())
 	# fh.close
-	cmd='''zhihucurl "%s" %s'''%(url,i)
+	cmd='''zhihucurl {1}'''.format(url,i)
 	# cmd=T.batencode(cmd)
 	# print cmd
 	os.system(cmd)

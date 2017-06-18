@@ -1,13 +1,15 @@
 import sys,time,os
-from qgb import U
+from qgb import *
 ls=[]
 
 from Tkinter import *
 top=Tk()
 b=Button(top,text='click')
 b.place(relx=0, rely=0.5, relwidth=1, relheight=0.1)
+# b.attribute("-alpha", 0.9)
 
 def foo(event):
+	U.pause()
 	btn=event.widget
 	btn['text']='clicked!'
 	btn['bg']='#008000'
@@ -15,7 +17,7 @@ def foo(event):
 
 b.bind('<Button>',foo)
 
-U.pln(top.keys())
 
-
+# top.wm_attributes('-topmost',1)
+# top.attributes("-alpha", 0.4)
 top.mainloop()

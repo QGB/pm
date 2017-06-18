@@ -1,39 +1,39 @@
 #coding=utf-8
-gsuser='ze.ran'
-gszhihu='https://www.zhihu.com/'
-gszp=gszhihu+'people/'
-gscmt0='''https://www.zhihu.com/node/AnswerCommentBoxV2?params=%7B%22answer_id%22%3A%22'''
-gscmt1='%22%2C%22load_all%22%3Atrue%7D'
 from bs4 import BeautifulSoup as bs
 import os,sys,re,urllib2,chardet
 from qgb import U,T
-if(len(sys.argv)==2):
-	if(len(sys.argv[1])>0):
-		gsuser=sys.argv[1]
-else:print 'Usage:',sys.argv[0],'zhihuUserUrl or id'
-if(gsuser.find(gszp)>-1):
-	gsuser=T.sub(gsuser,gszp,'').strip()
-print 'Processing '+gsuser+' ....'
 
-# U.mkdir('zhihu')
-# os.chdir('zhihu')
-# U.mkdir(gsuser)
-# os.chdir(gsuser)
+def parser(ai):
+	cmd='''curlt.bat %s'''%(ai)	
+	os.system(cmd)
+	
+	s1=U.read('./zcol/%s.html'%ai)
+	d=eval(s1)
+	d=d['msg']
+	
+	im=d[0]
+	d=d[1]
+	d=d.replace('\/','/')
+	
+	exec('d=u{0}{1}{0}'.format("'"*3,d))
+	
+	return d
+	# sp=bs(d,"html.parser" ) 
+	# sa=sp.find_all('a')
+	# print '='*44
+	# print len(sa)
+	# print sa[8].text
+	# print d.keys()
+	# U.write('sp.html',sp.)
+	
+parser(0)
 
-i=0
+exit()
+i=-1
 while(True):
-	break
 	i+=1
 	fn='%s.html'%i
-	url=gszp+gsuser+('/answers?page='+str(i))
-	
-	# U.pln(url) 
-	# fh=open('%s.html'%i,'wb')
-	# fh.write(urllib2.urlopen(url).read())
-	# fh.close
-	cmd='''Zcolcurl.bat %s'''%(i)
-	# cmd=T.batencode(cmd)
-	# print cmd
+	cmd='''curlt.bat %s'''%(i)	
 	os.system(cmd)
 	# exit()
 	# if(os.path.getsize(fn)<5):i-=1;continue
@@ -43,7 +43,7 @@ while(True):
 	
 	U.pln(i) 
 	if(i>16):exit()
-
+exit()
 i=0
 while(True):
 	st=''
